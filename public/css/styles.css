@@ -1,0 +1,42 @@
+body {
+    min-height: 100vh;
+}
+
+.mainBackground {
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+.form-control::placeholder {
+    font-style: italic !important;
+}
+
+.readNotification {
+    color: #E5EAF2;
+}
+
+.blackTitle {
+    color: black;
+}
+
+.Romania {
+    background-color: green !important;
+}
+.International {
+    background-color: yellow !important;
+}
+.Firme {
+    background-color: blueviolet !important;
+}
+.Imobiliare {
+    background-color: orange !important;
+}
+.Achizitii {
+    background-color: purple !important;
+}
+.Important {
+    background-color: red !important;
+}
+
+.Altele {
+    background-color: gainsboro !important;
+}
