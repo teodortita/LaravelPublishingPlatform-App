@@ -44,8 +44,8 @@
     </body>
     <footer class="fixed-bottom p-3 bg-dark border-top border-info">
         <div class="text-center text-secondary">
-            &copy; {{now()->year}} 
-            <span>Secretul Bancherului</span>
+            &copy; {{now()->year}} Made by 
+            <a class="text-info" href="https://www.linkedin.com/in/teodor-tita/">Teodor T.</a>
         </div>
     </footer>
 </html>

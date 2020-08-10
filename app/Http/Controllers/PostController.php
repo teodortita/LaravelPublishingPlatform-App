@@ -13,6 +13,9 @@ use App\User;
 use App\Notifications\PostCreated;
 use Notification;
 
+use App\Jobs\MailUser;
+use App\Mail\NewPost;
+
 class PostController extends Controller
 {
     public function getIndex()
@@ -160,6 +163,9 @@ class PostController extends Controller
         $users = User::where('id', '!=', auth()->id())->get();
         $post_id = Post::orderBy('created_at', 'desc')->first()->id;
         Notification::send($users, new PostCreated($user, $post_id));
+
+        MailUser::dispatch($user, new NewPost($user))
+            ->delay(now()->addMinutes(2));
 
         return redirect()->route('admin.index')->withInput()->with('info', 'Articol creat - Titlul este: '.$request->input('title'));
     }
