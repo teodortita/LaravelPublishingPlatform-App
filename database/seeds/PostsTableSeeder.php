@@ -86,8 +86,8 @@ class PostsTableSeeder extends Seeder
         $post->save();
         $post->tags()->attach([11, 21]);
         
-        $user = User::find('11');
-        $users = User::where('id', '!=', '11')->get();
+        $user = User::find('1');
+        $users = User::where('id', '!=', '1')->get();
         $post_id = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->first()->id;
         Notification::send($users, new PostCreated($user, $post_id));
 
