@@ -2,24 +2,23 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            Secretul Bancherului
+            {{ config('app.name', 'Financegram') }}
         @endcomponent
     @endslot
 
 {{-- Body --}}
-    <b>Felicitari,</b> {{ $userName }}!
+    <b>Congratulations,</b> {{ $userName }}!
     <br><br>
-    Tocmai ai publicat un nou articol pe aceasta platforma,
-    cu numele: "{{ $newPost->title }}".
+    You have just published a new article: 
+    "{{ $newPost->title }}".
     <br><br>
-    Il poti vizualiza <a href="{{ $newPost->url() }}">aici</a>.
-    <br><br>
-    O zi buna!
+    Have a great day!
 
 {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            © {{ date('Y') }} Secretul Bancherului.
+            &copy; {{now()->year}} Made by 
+            <a class="themeColor" href="https://www.linkedin.com/in/teodor-tita/">Teodor T.</a>
         @endcomponent
     @endslot
 @endcomponent

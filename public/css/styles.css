@@ -3,7 +3,38 @@ body {
 }
 
 .mainBackground {
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background: #ADA996;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@keyframes slideInFromBottom {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+}
+
+.slideBottom {
+    animation: 1s ease-out 0s 1 slideInFromBottom;
+}
+
+@keyframes slide {
+    from { background-position: 0 0; }
+    to { background-position: -400px 0; }
+}
+
+.bg-animated {
+    background: gray url(https://www.toptal.com/designers/subtlepatterns/patterns/webb.png) repeat 0 0;
+    text-align: center;
+    box-sizing: border-box;
+    animation: slide 20s linear infinite;
+}
+
+.themeColor{
+    color: #ED213A !important;
 }
 
 .form-control::placeholder {
@@ -14,29 +45,25 @@ body {
     color: #E5EAF2;
 }
 
-.blackTitle {
-    color: black;
-}
-
-.Romania {
+.UK {
     background-color: green !important;
 }
-.International {
+.Business {
     background-color: yellow !important;
 }
-.Firme {
+.Companies {
     background-color: blueviolet !important;
 }
-.Imobiliare {
+.Banking {
     background-color: orange !important;
 }
-.Achizitii {
+.Trading {
     background-color: purple !important;
 }
 .Important {
     background-color: red !important;
 }
 
-.Altele {
+.Other {
     background-color: gainsboro !important;
 }

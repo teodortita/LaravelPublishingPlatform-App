@@ -32,7 +32,7 @@ class NewPost extends Mailable
      */
     public function build()
     {
-        return $this->subject('Articol Nou Publicat')->markdown('emails.new_post')
+        return $this->subject('Your Newly Published Article')->markdown('emails.new_post')
             ->with([
                 'userName' => $this->user->name,
                 'newPost' => $this->user->posts()->orderBy('id', 'desc')->first()

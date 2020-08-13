@@ -17,51 +17,59 @@
     @endif
     <div class="row">
         @if(Auth::user()->avatar)
-            <div class="col-7 offset-5 col-md-4 offset-md-0 mt-3">
+            <!--<div class="col-7 offset-5 col-md-4 offset-md-0 mt-3">
                 <h2>
-                    <img src={{ Auth::user()->avatar }} class="img-fluid border border-info rounded" style="width: 25%">
+                    <img src={{ Auth::user()->avatar }} class="img-fluid border border-info rounded w-25">
                 </h2>
-            </div>
+            </div>-->
         @endif
-        <div class="col-8 offset-2 col-md-4 offset-md-0 mt-3 align-self-center">
-            <a href="{{ route('admin.create') }}" class="btn btn-block btn-lg btn-success">
-                <i class="fas fa-plus-circle"></i> Publicatie Noua
-            </a>
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center font-weight-light">
+                Your Dashboard
+                <hr>
+            </h1>
         </div>
     </div>
-    <hr class="bg-info">
-    <div class="row">
+    <div class="row slideBottom">
     @if(!count($posts))
         <div class="col-md-8 offset-md-2 mt-3">
-            <div class="card rounded bg-light border-dark mb-4">
+            <div class="card bg-light mb-4">
                 <div class="card-body">
-                    <h2 class="card-title">Ne scuzati!</h2>
+                    <h2 class="card-title">Oops!</h2>
                     <hr class="bg-secondary">
-                    <p>Nu exista continut.</p>
+                    <p>No articles yet.</p>
                 </div>
             </div>
         </div>
     @else
         @foreach($posts as $post)
-            <div class="col-md-4">
-                <div class="card rounded bg-light border-dark mb-4">
-                    <div class="card-body">
-                        <h2 class="card-title">
-                            <a href="{{ route('blog.post', ['id' => $post->id]) }}" class="text-dark">
-                                {{ $post->title }}
-                            </a>
-                        </h2> 
-                        <p>De 
-                            <a href="{{ route('blog.userPosts', ['id' => $post->user->id]) }}">
-                                {{ $post->user->name }}
-                            </a>
-                        </p>
+            <div class="col-md-6 mt-3">
+                    <div class="card bg-light mb-4">
+                        <div class="card-header">
+                            <a href="{{ route('blog.post', ['id' => $post->id]) }}" class="lead text-dark">{{ $post->title }}</a>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                <p class="lead">
+                                        @foreach($post->tags as $tag)
+                                        <a href="{{ route('blog.tag', ['name' => strtolower($tag->name)]) }}" class="text-dark">
+                                            <span class="rounded p-1 m-1 {{ $tag->name }}">
+                                                &bull; {{ $tag->name }} &bull;
+                                            </span>
+                                        </a>
+                                        @endforeach
+                                </p>
+                            </h2>
+                            <p class="card-text">
+                                {!! \Illuminate\Support\Str::limit($post->content, 240) !!}
+                            </p>
+                            <a href="{{ route('blog.post', ['id' => $post->id]) }}" class="themeColor">Read more...</a>
+                        </div>
                         <div class="card-footer text-muted">
-                            <a href="{{ route('admin.edit', ['id' => $post->id]) }}" class="col-5 offset-1 btn btn-warning">Modifica</a>
-                            <a href="{{ route('admin.delete', ['id' => $post->id]) }}" class="col-5 btn btn-danger">Sterge</a>
+                            <a href="{{ route('admin.edit', ['id' => $post->id]) }}" class="col-5 offset-1 btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.delete', ['id' => $post->id]) }}" class="col-5 btn btn-danger">Delete</a>
                         </div>
                     </div>
-                </div>
             </div>
         @endforeach
     @endif

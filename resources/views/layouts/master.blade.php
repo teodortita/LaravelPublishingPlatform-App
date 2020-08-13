@@ -11,9 +11,12 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{URL::to('css/styles.css')}}"/>
-        
+
+        <link rel="stylesheet" href="{{URL::to('css/styles.css')}}"/>   
         <link href="https://fonts.googleapis.com/css?family=Patua+One&display=swap" rel="stylesheet">
+
+        <script src="https://cdn.tiny.cloud/1/ysldyaqwagrnyr0phjtho1eh6lkue1u6ic4552a2hy3vi871/tinymce/5/tinymce.min.js" 
+            referrerpolicy="origin" SameSite=None; Secure></script>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -29,23 +32,11 @@
         <div class="container py-4">
             @yield('content')
         </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-        @if(\Request::is('rates*'))
-            {!! $pieChart->script() !!}
-            {!! $radarChart->script() !!}
-            {!! $barChart->script() !!}
-            {!! $lineChartInterval->script() !!}
-        @endif
-        @if(\Request::is('crypto*'))
-            {!! $barChartVolume->script() !!}
-            {!! $lineChartRange->script() !!}
-        @endif
     </body>
-    <footer class="fixed-bottom p-3 bg-dark border-top border-info">
+    <footer class="fixed-bottom p-3 bg-light border-top">
         <div class="text-center text-secondary">
             &copy; {{now()->year}} Made by 
-            <a class="text-info" href="https://www.linkedin.com/in/teodor-tita/">Teodor T.</a>
+            <a class="themeColor" href="https://www.linkedin.com/in/teodor-tita/">Teodor T.</a>
         </div>
     </footer>
 </html>

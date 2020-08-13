@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Parola</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -45,7 +45,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        Tine-ma minte
+                                        Remember me
                                     </label>
                                 </div>
                             </div>
@@ -54,16 +54,16 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Autentificare
+                                    Login
                                 </button>
                                 
                                 <a href="login/github" class="btn btn-primary">
-                                    Autentificare cu GitHub <i class="fab fa-github"></i>
+                                    Login with GitHub <i class="fab fa-github"></i>
                                 </a>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Ati uitat parola?
+                                        Forgot password?
                                     </a>
                                 @endif
                             </div>

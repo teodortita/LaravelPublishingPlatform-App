@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
+    if (Auth::user()) {
+        return redirect('/articles');
+    }
     return view('general.index');
 })->name('general.index');
 
@@ -31,41 +34,6 @@ Route::get('markRead/{notification_id}', [
     'uses' => 'PostController@markRead',
     'as' => 'markRead'
 ]);
-
-Route::group(['prefix' => 'rates'], function() {
-    Route::get('{param1}/{param2}/{param3}/{startYear}/{endYear}', [
-        'uses' => 'RateChartController@getIndex',
-        'as' => 'rates.index'
-    ]);
-    
-    Route::post('', [
-        'uses' => 'RateChartController@index',
-        'as' => 'rates.index'
-    ]);
-});
-
-Route::group(['prefix' => 'crypto'], function() {
-    Route::get('{param1}/{param2}', [
-        'uses' => 'CryptoController@getIndex',
-        'as' => 'crypto.index'
-    ]);
-    
-    Route::post('', [
-        'uses' => 'CryptoController@index',
-        'as' => 'crypto.index'
-    ]);
-});
-
-Route::group(['prefix' => 'calculate'], function() {
-    Route::get('rates', [
-        'uses' => 'RateChartController@calculate',
-        'as' => 'rates.calculate'
-    ]);
-    Route::get('crypto', [
-        'uses' => 'CryptoController@calculate',
-        'as' => 'crypto.calculate'
-    ]);
-});
 
 Route::get('articles', [
     'uses' => 'PostController@getIndex',

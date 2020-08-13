@@ -20,7 +20,7 @@ class PostController extends Controller
 {
     public function getIndex()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(3);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(4);
         return view('blog.index', ['posts' => $posts]);
     }
 
@@ -28,7 +28,7 @@ class PostController extends Controller
     {
         if (User::where('id', $id)->first()) {
             $user = User::where('id', $id)->first();
-            $posts = Post::orderBy('created_at', 'desc')->where('user_id', $id)->paginate(3);
+            $posts = Post::orderBy('created_at', 'desc')->where('user_id', $id)->paginate(4);
             return view('blog.index', ['user' => $user,'posts' => $posts]);
         }
         else {
@@ -47,7 +47,7 @@ class PostController extends Controller
             foreach ($searchedPosts as $post) {
                 $array[$iterator++] = $post->post_id;
             }
-            $posts = Post::orderBy('created_at', 'desc')->whereIn('id', $array)->paginate(3);
+            $posts = Post::orderBy('created_at', 'desc')->whereIn('id', $array)->paginate(4);
             return view('blog.index', ['tag_name' => $tag_name, 'posts' => $posts]);
         }
         else {
@@ -118,7 +118,7 @@ class PostController extends Controller
         }
         $post = Post::find($id);
         if (Gate::denies('manipulate-post', $post)) {
-            return redirect()->route('admin.index')->with('danger', 'Puteti edita/sterge doar articolele care va apartin!');
+            return redirect()->route('admin.index')->with('danger', 'You can only edit/delete your own articles!');
         }
         $tags = Tag::all();
         return view('admin.edit', [
@@ -132,12 +132,12 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         if (Gate::denies('manipulate-post', $post)) {
-            return redirect()->route('admin.index')->with('danger', 'Puteti edita/sterge doar articolele care va apartin!');
+            return redirect()->route('admin.index')->with('danger', 'You can only edit/delete your own articles!');
         }
         $post->likes()->delete();
         $post->tags()->detach();
         $post->delete();
-        return redirect()->route('admin.index')->with('info', 'Articol sters!');
+        return redirect()->route('admin.index')->with('info', 'Article deleted.');
     }
 
     public function postAdminCreate(Request $request)
@@ -167,7 +167,7 @@ class PostController extends Controller
         MailUser::dispatch($user, new NewPost($user))
             ->delay(now()->addMinutes(2));
 
-        return redirect()->route('admin.index')->withInput()->with('info', 'Articol creat - Titlul este: '.$request->input('title'));
+        return redirect()->route('admin.index')->withInput()->with('info', 'Article created - Title is: '.$request->input('title'));
     }
 
     public function postAdminUpdate(Request $request)
@@ -178,13 +178,13 @@ class PostController extends Controller
         ]);
         $post = Post::find($request->input('id'));
         if (Gate::denies('manipulate-post', $post)) {
-            return redirect()->route('admin.index')->with('danger', 'Puteti edita/sterge doar articolele care va apartin!');
+            return redirect()->route('admin.index')->with('danger', 'You can only edit/delete your own articles!');
         }
         $post->title = $request->input('title');
         $post->content = $request->input('content');
         $post->save();
         $post->tags()->sync($request->input('tags') === null ? [] : $request->input('tags'));
         
-        return redirect()->route('admin.index')->with('info', 'Articol editat, noul Titlu este: '.$request->input('title'));
+        return redirect()->route('admin.index')->with('info', 'Article edited - New title is: '.$request->input('title'));
     }
 }

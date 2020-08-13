@@ -12,23 +12,23 @@ class TagsTableSeeder extends Seeder
     public function run()
     {
         $tag = new \App\Tag();
-        $tag->name = 'Romania';
+        $tag->name = 'UK';
         $tag->save();
 
         $tag = new \App\Tag();
-        $tag->name = 'International';
+        $tag->name = 'Business';
         $tag->save();
 
         $tag = new \App\Tag();
-        $tag->name = 'Firme';
+        $tag->name = 'Companies';
         $tag->save();
 
         $tag = new \App\Tag();
-        $tag->name = 'Imobiliare';
+        $tag->name = 'Banking';
         $tag->save();
 
         $tag = new \App\Tag();
-        $tag->name = 'Achizitii';
+        $tag->name = 'Trading';
         $tag->save();
 
         $tag = new \App\Tag();
@@ -36,7 +36,7 @@ class TagsTableSeeder extends Seeder
         $tag->save();
 
         $tag = new \App\Tag();
-        $tag->name = 'Altele';
+        $tag->name = 'Other';
         $tag->save();
     }
 }

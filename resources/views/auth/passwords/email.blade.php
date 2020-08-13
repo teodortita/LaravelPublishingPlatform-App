@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mt-3">
             <div class="card">
-                <div class="card-header">Reseteaza Parola</div>
+                <div class="card-header">Reset Password</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -34,7 +34,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Trimite Link pentru Resetare Parola
+                                    Send Link for Password Reset
                                 </button>
                             </div>
                         </div>
