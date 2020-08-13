@@ -53,7 +53,7 @@ class PostsTableSeeder extends Seeder
             'user_id' => '1'
         ]);
         $post->save();
-        $post->tags()->attach([3]);
+        $post->tags()->attach([31]);
 
         $user = User::find('1');
         $users = User::where('id', '!=', '1')->get();
@@ -84,10 +84,10 @@ class PostsTableSeeder extends Seeder
             'user_id' => '1'
         ]);
         $post->save();
-        $post->tags()->attach([1, 2]);
+        $post->tags()->attach([11, 21]);
         
-        $user = User::find('1');
-        $users = User::where('id', '!=', '1')->get();
+        $user = User::find('11');
+        $users = User::where('id', '!=', '11')->get();
         $post_id = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->first()->id;
         Notification::send($users, new PostCreated($user, $post_id));
 
@@ -116,13 +116,13 @@ class PostsTableSeeder extends Seeder
             What\'s more, many of the innovations that promise to make 5G truly disruptive have yet to arrive. 
             But more on that in a bit.',
             
-            'user_id' => '1'
+            'user_id' => '11'
         ]);
         $post->save();
-        $post->tags()->attach([1, 5]);
+        $post->tags()->attach([11, 51]);
 
-        $user = User::find('1');
-        $users = User::where('id', '!=', '1')->get();
+        $user = User::find('11');
+        $users = User::where('id', '!=', '11')->get();
         $post_id = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->first()->id;
         Notification::send($users, new PostCreated($user, $post_id));
 
@@ -157,13 +157,13 @@ class PostsTableSeeder extends Seeder
             whether it is paid-for advertising or "organic" content - where no professional advertiser is paid to 
             promote and distribute it.',
             
-            'user_id' => '2'
+            'user_id' => '21'
         ]);
         $post->save();
-        $post->tags()->attach([6]);
+        $post->tags()->attach([61]);
 
-        $user = User::find('2');
-        $users = User::where('id', '!=', '2')->get();
+        $user = User::find('21');
+        $users = User::where('id', '!=', '21')->get();
         $post_id = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->first()->id;
         Notification::send($users, new PostCreated($user, $post_id));
 
@@ -194,13 +194,13 @@ class PostsTableSeeder extends Seeder
             And while local coronavirus lockdowns in the north of England had taken a toll on consumer 
             confidence in the region, morale was higher in Scotland, she said.',
             
-            'user_id' => '4'
+            'user_id' => '41'
         ]);
         $post->save();
-        $post->tags()->attach([3]);
+        $post->tags()->attach([31]);
 
-        $user = User::find('4');
-        $users = User::where('id', '!=', '4')->get();
+        $user = User::find('41');
+        $users = User::where('id', '!=', '41')->get();
         $post_id = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->first()->id;
         Notification::send($users, new PostCreated($user, $post_id));
     }
